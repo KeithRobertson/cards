@@ -1,7 +1,5 @@
 package com.cards;
 
-import com.sun.istack.internal.NotNull;
-
 public class Card implements ICard {
 
     private final Value value;
