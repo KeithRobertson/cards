@@ -2,8 +2,8 @@ package com.cards;
 
 import org.junit.Test;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -18,7 +18,7 @@ public class HandTest {
 
     @Test
     public void testSizeOfHandWithOneCard() {
-        Set<ICard> cards = new TreeSet<ICard>();
+        List<ICard> cards = new ArrayList<ICard>();
         cards.add(mock(ICard.class));
         Hand hand = new Hand(cards);
         assertEquals(1, hand.getSize());
@@ -27,16 +27,16 @@ public class HandTest {
     @Test
     public void testGetCardsWhenHandIsEmpty() {
         Hand hand = new Hand();
-        Set<ICard> cards = hand.getCards();
+        List<ICard> cards = hand.getCards();
         assertEquals(0, cards.size());
     }
 
     @Test
     public void testGetCardsWhenHandIsPopulated() {
-        Set<ICard> startingCards = new TreeSet<ICard>();
+        List<ICard> startingCards = new ArrayList<ICard>();
         startingCards.add(mock(ICard.class));
         Hand hand = new Hand(startingCards);
-        Set<ICard> returnedCards = hand.getCards();
+        List<ICard> returnedCards = hand.getCards();
         assertEquals(startingCards, returnedCards);
     }
 
@@ -50,7 +50,7 @@ public class HandTest {
     @Test
     public void testGetCard_CardInHand() {
         ICard startingCard = new Card(Value.ACE, Suit.CLUBS);
-        Set<ICard> cards = new TreeSet<ICard>();
+        List<ICard> cards = new ArrayList<ICard>();
         cards.add(startingCard);
         Hand hand = new Hand(cards);
         ICard returnedCard = hand.getCard(Value.ACE, Suit.CLUBS);

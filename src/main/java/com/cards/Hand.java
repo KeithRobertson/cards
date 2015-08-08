@@ -1,17 +1,17 @@
 package com.cards;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Hand {
 
-    private Set<ICard> cards;
+    private List<ICard> cards;
 
     public Hand() {
-        this.cards = new TreeSet<ICard>();
+        this.cards = new ArrayList<ICard>();
     }
 
-    public Hand(Set<ICard> cards) {
+    public Hand(List<ICard> cards) {
         this.cards = cards;
     }
 
@@ -19,7 +19,7 @@ public class Hand {
         return cards.size();
     }
 
-    public Set<ICard> getCards() {
+    public List<ICard> getCards() {
         return cards;
     }
 
@@ -35,7 +35,9 @@ public class Hand {
     }
 
     public void addCard(ICard card) {
-        cards.add(card);
+        if (!cards.contains(card)) {
+            cards.add(card);
+        }
     }
 
     public void removeCard(ICard card) {
