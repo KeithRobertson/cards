@@ -7,6 +7,7 @@ import java.util.List;
 public class StandardDeck implements IDeck {
 
     private List<ICard> cards;
+    private List<ICard> discardPile;
 
     public StandardDeck() {
         cards = new ArrayList<>();
@@ -15,6 +16,7 @@ public class StandardDeck implements IDeck {
                 cards.add(new Card(rank, suit));
             }
         }
+        discardPile = new ArrayList<>();
     }
 
     @Override
@@ -23,8 +25,15 @@ public class StandardDeck implements IDeck {
     }
 
     @Override
-    public void shuffle() {
+    public void shuffleDeck() {
         Collections.shuffle(cards);
+    }
+
+    @Override
+    public void shuffleInDiscards() {
+        cards.addAll(discardPile);
+        discardPile.clear();
+        shuffleDeck();
     }
 
     @Override
@@ -35,5 +44,10 @@ public class StandardDeck implements IDeck {
     @Override
     public boolean contains(ICard card) {
         return cards.contains(card);
+    }
+
+    @Override
+    public void addCardsToDiscardPile(List<ICard> cards) {
+        discardPile.addAll(cards);
     }
 }

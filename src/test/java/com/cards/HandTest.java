@@ -1,5 +1,6 @@
 package com.cards;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,9 +11,16 @@ import static org.mockito.Mockito.mock;
 
 public class HandTest {
 
+    private IDeck deck;
+
+    @Before
+    public void setUp() {
+        deck = mock(IDeck.class);
+    }
+
     @Test
     public void testDefaultHandIsEmpty() {
-        Hand hand = new Hand();
+        IHand hand = new Hand(deck);
         assertEquals(0, hand.getSize());
     }
 
@@ -20,13 +28,13 @@ public class HandTest {
     public void testSizeOfHandWithOneCard() {
         List<ICard> cards = new ArrayList<>();
         cards.add(mock(ICard.class));
-        Hand hand = new Hand(cards);
+        IHand hand = new Hand(deck, cards);
         assertEquals(1, hand.getSize());
     }
 
     @Test
     public void testGetCardsWhenHandIsEmpty() {
-        Hand hand = new Hand();
+        IHand hand = new Hand(deck);
         List<ICard> cards = hand.getCards();
         assertEquals(0, cards.size());
     }
@@ -35,14 +43,14 @@ public class HandTest {
     public void testGetCardsWhenHandIsPopulated() {
         List<ICard> startingCards = new ArrayList<>();
         startingCards.add(mock(ICard.class));
-        Hand hand = new Hand(startingCards);
+        IHand hand = new Hand(deck, startingCards);
         List<ICard> returnedCards = hand.getCards();
         assertEquals(startingCards, returnedCards);
     }
 
     @Test
     public void testGetCard_CardNotInHand() {
-        Hand hand = new Hand();
+        IHand hand = new Hand(deck);
         ICard card = hand.getCard(Rank.ACE, Suit.SPADES);
         assertNull(card);
     }
@@ -52,7 +60,7 @@ public class HandTest {
         ICard startingCard = new Card(Rank.ACE, Suit.CLUBS);
         List<ICard> cards = new ArrayList<>();
         cards.add(startingCard);
-        Hand hand = new Hand(cards);
+        IHand hand = new Hand(deck, cards);
         ICard returnedCard = hand.getCard(Rank.ACE, Suit.CLUBS);
         assertEquals(startingCard, returnedCard);
     }
@@ -60,7 +68,7 @@ public class HandTest {
     @Test
     public void testAddCardToHand() {
         ICard card = mock(ICard.class);
-        Hand hand = new Hand();
+        IHand hand = new Hand(deck);
         hand.addCard(card);
         assertEquals(1, hand.getSize());
 
@@ -69,7 +77,7 @@ public class HandTest {
     @Test
     public void testAddCardToHandRetainsValueAndSuit() {
         ICard card = new Card(Rank.ACE, Suit.CLUBS);
-        Hand hand = new Hand();
+        IHand hand = new Hand(deck);
         hand.addCard(card);
         assertTrue(hand.getCards().contains(card));
     }
@@ -78,36 +86,54 @@ public class HandTest {
     public void testAddingDuplicateCardDoesNothing() {
         ICard firstCard = new Card(Rank.ACE, Suit.CLUBS);
         ICard secondCard = new Card(Rank.ACE, Suit.CLUBS);
-        Hand hand = new Hand();
+        IHand hand = new Hand(deck);
         hand.addCard(firstCard);
         hand.addCard(secondCard);
         assertEquals(1, hand.getSize());
     }
 
     @Test
-    public void testRemoveCard() {
+    public void testDiscardCard() {
         ICard card = mock(ICard.class);
-        Hand hand = new Hand();
+        IHand hand = new Hand(deck);
         hand.addCard(card);
-        hand.removeCard(card);
+        hand.discardCard(card);
         assertEquals(0, hand.getSize());
     }
 
     @Test
-    public void testRemovingCardFromEmptyHandDoesNothing() {
+    public void testDiscardingCardFromEmptyHandDoesNothing() {
         ICard card = mock(ICard.class);
-        Hand hand = new Hand();
-        hand.removeCard(card);
+        IHand hand = new Hand(deck);
+        hand.discardCard(card);
         assertEquals(0, hand.getSize());
     }
 
     @Test
-    public void testRemovingCardNotInHandDoesNothing() {
+    public void testDiscardingCardNotInHandDoesNothing() {
         ICard card = new Card(Rank.ACE, Suit.CLUBS);
         ICard unheldCard = new Card(Rank.TEN, Suit.DIAMONDS);
-        Hand hand = new Hand();
+        IHand hand = new Hand(deck);
         hand.addCard(card);
-        hand.removeCard(unheldCard);
+        hand.discardCard(unheldCard);
         assertEquals(1, hand.getSize());
+    }
+
+    @Test
+    public void testDiscardHand() {
+        ICard firstCard = new Card(Rank.ACE, Suit.CLUBS);
+        ICard secondCard = new Card(Rank.KING, Suit.DIAMONDS);
+        IHand hand = new Hand(deck);
+        hand.addCard(firstCard);
+        hand.addCard(secondCard);
+        hand.discardHand();
+        assertEquals(0, hand.getSize());
+    }
+
+    @Test
+    public void testDiscardEmptyHand() {
+        IHand hand = new Hand(deck);
+        hand.discardHand();
+        assertEquals(0, hand.getSize());
     }
 }
