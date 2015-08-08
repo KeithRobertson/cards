@@ -18,7 +18,7 @@ public class HandTest {
 
     @Test
     public void testSizeOfHandWithOneCard() {
-        List<ICard> cards = new ArrayList<ICard>();
+        List<ICard> cards = new ArrayList<>();
         cards.add(mock(ICard.class));
         Hand hand = new Hand(cards);
         assertEquals(1, hand.getSize());
@@ -33,7 +33,7 @@ public class HandTest {
 
     @Test
     public void testGetCardsWhenHandIsPopulated() {
-        List<ICard> startingCards = new ArrayList<ICard>();
+        List<ICard> startingCards = new ArrayList<>();
         startingCards.add(mock(ICard.class));
         Hand hand = new Hand(startingCards);
         List<ICard> returnedCards = hand.getCards();
@@ -50,7 +50,7 @@ public class HandTest {
     @Test
     public void testGetCard_CardInHand() {
         ICard startingCard = new Card(Value.ACE, Suit.CLUBS);
-        List<ICard> cards = new ArrayList<ICard>();
+        List<ICard> cards = new ArrayList<>();
         cards.add(startingCard);
         Hand hand = new Hand(cards);
         ICard returnedCard = hand.getCard(Value.ACE, Suit.CLUBS);

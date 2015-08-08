@@ -12,15 +12,18 @@ public class Card implements ICard {
         this.suit = suit;
     }
 
+    @Override
     public Value getValue() {
         return value;
     }
 
+    @Override
     public Suit getSuit() {
         return suit;
     }
 
     // sorting by value first
+    @Override
     public int compareTo(ICard card) {
         int valueComparison = this.value.compareTo(card.getValue());
         return valueComparison == 0 ? this.suit.compareTo(card.getSuit()) : valueComparison;
@@ -33,8 +36,12 @@ public class Card implements ICard {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Card card = (Card) o;
         return Objects.equals(value, card.value) &&
                 Objects.equals(suit, card.suit);
