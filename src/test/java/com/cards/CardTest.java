@@ -3,6 +3,7 @@ package com.cards;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CardTest {
@@ -60,4 +61,24 @@ public class CardTest {
         assertEquals("ACE of SPADES", card.toString());
     }
 
+    @Test
+    public void testCardsAreEqual() {
+        ICard firstCard = new Card(Value.ACE, Suit.SPADES);
+        ICard secondCard = new Card(Value.ACE, Suit.SPADES);
+        assertEquals(firstCard, secondCard);
+    }
+
+    @Test
+    public void testCardsAreNotEqualWhenValueDiffers() {
+        ICard firstCard = new Card(Value.ACE, Suit.SPADES);
+        ICard secondCard = new Card(Value.KING, Suit.SPADES);
+        assertNotEquals(firstCard, secondCard);
+    }
+
+    @Test
+    public void testCardsAreNotEqualWhenSuitDiffers() {
+        ICard firstCard = new Card(Value.ACE, Suit.HEARTS);
+        ICard secondCard = new Card(Value.ACE, Suit.SPADES);
+        assertNotEquals(firstCard, secondCard);
+    }
 }
