@@ -14,7 +14,7 @@ public class StandardDeckTest {
 
     @Test
     public void testFirstDealtCardFromStandardDeck() {
-        ICard expectedCard = new Card(Value.ACE, Suit.CLUBS);
+        ICard expectedCard = new Card(Rank.ACE, Suit.CLUBS);
         IDeck deck = new StandardDeck();
         ICard drawnCard = deck.deal();
         assertEquals(expectedCard, drawnCard);
@@ -29,7 +29,7 @@ public class StandardDeckTest {
 
     @Test
     public void testDealCardRemovesFromDeck() {
-        ICard card = new Card(Value.ACE, Suit.CLUBS);
+        ICard card = new Card(Rank.ACE, Suit.CLUBS);
         IDeck deck = new StandardDeck();
         deck.deal();
         assertFalse(deck.contains(card));
@@ -37,7 +37,7 @@ public class StandardDeckTest {
 
     @Test
     public void testContains() {
-        ICard card = new Card(Value.ACE, Suit.SPADES);
+        ICard card = new Card(Rank.ACE, Suit.SPADES);
         IDeck deck = new StandardDeck();
         assertTrue(deck.contains(card));
     }

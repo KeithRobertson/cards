@@ -1,7 +1,7 @@
 package com.cards;
 
 public interface ICard extends Comparable<ICard> {
-    Value getValue();
+    Rank getRank();
 
     Suit getSuit();
 }

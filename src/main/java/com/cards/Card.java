@@ -4,17 +4,17 @@ import java.util.Objects;
 
 public class Card implements ICard {
 
-    private final Value value;
+    private final Rank rank;
     private final Suit suit;
 
-    public Card(Value value, Suit suit) {
-        this.value = value;
+    public Card(Rank rank, Suit suit) {
+        this.rank = rank;
         this.suit = suit;
     }
 
     @Override
-    public Value getValue() {
-        return value;
+    public Rank getRank() {
+        return rank;
     }
 
     @Override
@@ -22,16 +22,16 @@ public class Card implements ICard {
         return suit;
     }
 
-    // sorting by value first
+    // sorting by rank first
     @Override
     public int compareTo(ICard card) {
-        int valueComparison = this.value.compareTo(card.getValue());
+        int valueComparison = this.rank.compareTo(card.getRank());
         return valueComparison == 0 ? this.suit.compareTo(card.getSuit()) : valueComparison;
     }
 
     @Override
     public String toString() {
-        return String.format("%s of %s", value, suit);
+        return String.format("%s of %s", rank, suit);
     }
 
     @Override
@@ -43,12 +43,12 @@ public class Card implements ICard {
             return false;
         }
         Card card = (Card) o;
-        return Objects.equals(value, card.value) &&
+        return Objects.equals(rank, card.rank) &&
                 Objects.equals(suit, card.suit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, suit);
+        return Objects.hash(rank, suit);
     }
 }

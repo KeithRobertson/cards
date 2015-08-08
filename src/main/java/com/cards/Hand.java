@@ -23,10 +23,10 @@ public class Hand {
         return cards;
     }
 
-    public ICard getCard(Value value, Suit suit) {
+    public ICard getCard(Rank rank, Suit suit) {
         ICard card = null;
         for (ICard currentCard : cards) {
-            if (currentCard.getValue() == value && currentCard.getSuit() == suit) {
+            if (currentCard.getRank() == rank && currentCard.getSuit() == suit) {
                 card = currentCard;
                 break;
             }

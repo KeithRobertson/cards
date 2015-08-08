@@ -11,8 +11,8 @@ public class StandardDeck implements IDeck {
     public StandardDeck() {
         cards = new ArrayList<>();
         for (Suit suit : Suit.values()) {
-            for (Value value : Value.values()) {
-                cards.add(new Card(value, suit));
+            for (Rank rank : Rank.values()) {
+                cards.add(new Card(rank, suit));
             }
         }
     }
