@@ -36,7 +36,6 @@ public class Hand {
 
     public void addCard(ICard card) {
         cards.add(card);
-
     }
 
     public void removeCard(ICard card) {
