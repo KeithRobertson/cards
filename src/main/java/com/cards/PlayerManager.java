@@ -11,20 +11,24 @@ public class PlayerManager {
         players = new ArrayList<>();
     }
 
-    public void addPlayer() {
-        addPlayer(getNextName());
+    public IPlayer addPlayer() {
+        return addPlayer(getNextName());
     }
 
-    public void addPlayer(IHand hand) {
-        addPlayer(getNextName(), hand);
+    public IPlayer addPlayer(IHand hand) {
+        return addPlayer(getNextName(), hand);
     }
 
-    public void addPlayer(String name) {
-        this.players.add(new Player(name));
+    public IPlayer addPlayer(String name) {
+        IPlayer player = new Player(name);
+        this.players.add(player);
+        return player;
     }
 
-    public void addPlayer(String name, IHand hand) {
-        this.players.add(new Player(name, hand));
+    public IPlayer addPlayer(String name, IHand hand) {
+        IPlayer player = new Player(name, hand);
+        this.players.add(player);
+        return player;
     }
 
     public int getNumberOfPlayers() {

@@ -47,4 +47,10 @@ public class PlayerManagerTest {
         assertEquals("Keith", playerManager.getPlayers().get(0).getName());
         assertEquals(hand, playerManager.getPlayers().get(0).getHand());
     }
+
+    @Test
+    public void addingAPlayerShouldReturnThePlayerToTheCaller() {
+        IPlayer player = playerManager.addPlayer("Keith");
+        assertEquals("Keith", player.getName());
+    }
 }
