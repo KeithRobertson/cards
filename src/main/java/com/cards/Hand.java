@@ -7,15 +7,13 @@ import java.util.List;
 public class Hand implements IHand {
 
     private List<ICard> cards;
-    private IDeck deck;
 
-    public Hand(IDeck deck) {
-        this(deck, new ArrayList<>());
+    public Hand() {
+        this(new ArrayList<>());
     }
 
-    public Hand(IDeck deck, List<ICard> cards) {
+    public Hand(List<ICard> cards) {
         this.cards = cards;
-        this.deck = deck;
     }
 
     @Override
@@ -30,14 +28,13 @@ public class Hand implements IHand {
 
     @Override
     public ICard getCard(Rank rank, Suit suit) {
-        ICard card = null;
+        ICard targetCard = new Card(rank, suit);
         for (ICard currentCard : cards) {
-            if (currentCard.getRank() == rank && currentCard.getSuit() == suit) {
-                card = currentCard;
-                break;
+            if (currentCard.equals(targetCard)) {
+                return currentCard;
             }
         }
-        return card;
+        return null;
     }
 
     @Override
@@ -48,18 +45,18 @@ public class Hand implements IHand {
     }
 
     @Override
-    public void discardCard(ICard card) {
-    discardCards(new ArrayList<>(Arrays.asList(card)));
+    public void discardCard(ICard card, IDeck deck) {
+    discardCards(new ArrayList<>(Arrays.asList(card)), deck);
     }
 
     @Override
-    public void discardCards(List<ICard> cards) {
+    public void discardCards(List<ICard> cards, IDeck deck) {
         this.cards.removeAll(cards);
         deck.addCardsToDiscardPile(cards);
     }
 
     @Override
-    public void discardHand() {
-        discardCards(cards);
+    public void discardHand(IDeck deck) {
+        discardCards(new ArrayList<>(cards), deck);
     }
 }
