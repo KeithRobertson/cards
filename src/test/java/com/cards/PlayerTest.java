@@ -13,7 +13,7 @@ public class PlayerTest {
 
     @Before
     public void setUp() {
-        player = new Player();
+        player = new Player("Player 1");
     }
 
     @Test
@@ -24,7 +24,7 @@ public class PlayerTest {
     @Test
     public void testPlayerCanBeInstantiatedWithAHand() {
         IHand hand = mock(IHand.class);
-        player = new Player(hand);
+        player = new Player("Player 1", hand);
         assertEquals(hand, player.getHand());
     }
 
@@ -33,6 +33,29 @@ public class PlayerTest {
         ICard card = mock(ICard.class);
         player.giveCard(card);
         assertTrue(player.getHand().hasCard(card));
+    }
+
+    @Test
+    public void testPlayerHasDefaultName() {
+        assertEquals("Player 1", player.getName());
+    }
+
+    @Test
+    public void testSecondPlayerHasADifferentName() {
+        IPlayer playerTwo = new Player("Player 2");
+        assertEquals("Player 2", playerTwo.getName());
+    }
+
+    @Test
+    public void testPlayerCanBeCreatedWithAName() {
+        player = new Player("Keith");
+        assertEquals("Keith", player.getName());
+    }
+
+    @Test
+    public void testPlayerCanChangeTheirName() {
+        player.setName("Keith");
+        assertEquals("Keith", player.getName());
     }
 
 }
