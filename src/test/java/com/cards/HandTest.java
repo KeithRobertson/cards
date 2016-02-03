@@ -172,4 +172,11 @@ public class HandTest {
         hand.discardHand(deck);
         verify(deck).addCardsToDiscardPile(cardList);
     }
+
+    @Test
+    public void testHandsCanBeCheckedForSpecificCards() {
+        ICard card = mock(ICard.class);
+        hand.addCard(card);
+        assertTrue(hand.hasCard(card));
+    }
 }

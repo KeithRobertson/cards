@@ -59,4 +59,9 @@ public class Hand implements IHand {
     public void discardHand(IDeck deck) {
         discardCards(new ArrayList<>(cards), deck);
     }
+
+    @Override
+    public boolean hasCard(ICard card) {
+        return cards.contains(card);
+    }
 }
