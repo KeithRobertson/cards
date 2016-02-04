@@ -53,4 +53,15 @@ public class PlayerManagerTest {
         IPlayer player = playerManager.addPlayer("Keith");
         assertEquals("Keith", player.getName());
     }
+
+    @Test
+    public void playersGetDefaultNames() {
+        assertEquals("Player 1", playerManager.addPlayer().getName());
+    }
+
+    @Test
+    public void secondPlayerGetsNextNumberUpForName() {
+        playerManager.addPlayer();
+        assertEquals("Player 2", playerManager.addPlayer().getName());
+    }
 }

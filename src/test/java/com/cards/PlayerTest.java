@@ -36,17 +36,6 @@ public class PlayerTest {
     }
 
     @Test
-    public void testPlayerHasDefaultName() {
-        assertEquals("Player 1", player.getName());
-    }
-
-    @Test
-    public void testSecondPlayerHasADifferentName() {
-        IPlayer playerTwo = new Player("Player 2");
-        assertEquals("Player 2", playerTwo.getName());
-    }
-
-    @Test
     public void testPlayerCanBeCreatedWithAName() {
         player = new Player("Keith");
         assertEquals("Keith", player.getName());

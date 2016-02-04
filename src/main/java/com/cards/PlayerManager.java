@@ -40,6 +40,6 @@ public class PlayerManager {
     }
 
     private String getNextName() {
-        return "Player " + players.size() + 1;
+        return "Player " + (players.size() + 1);
     }
 }
