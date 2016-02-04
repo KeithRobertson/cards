@@ -3,6 +3,7 @@ package com.cards;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
 
 public class Hand implements IHand {
 
@@ -63,5 +64,10 @@ public class Hand implements IHand {
     @Override
     public boolean hasCard(ICard card) {
         return cards.contains(card);
+    }
+
+    @Override
+    public String toString() {
+        return cards.toString();
     }
 }

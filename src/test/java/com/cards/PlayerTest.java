@@ -47,4 +47,16 @@ public class PlayerTest {
         assertEquals("Keith", player.getName());
     }
 
+    @Test
+    public void testPlayerWithNoHandCanBePrintedOut() {
+        assertEquals("Player 1: []", player.toString());
+    }
+
+    @Test
+    public void testPlayerWithHandCanBePrintedOut() {
+        player.setName("Keith");
+        player.giveCard(new Card(Rank.ACE, Suit.CLUBS));
+        assertEquals("Keith: [ACE of CLUBS]", player.toString());
+    }
+
 }

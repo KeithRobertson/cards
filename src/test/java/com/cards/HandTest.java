@@ -179,4 +179,20 @@ public class HandTest {
         hand.addCard(card);
         assertTrue(hand.hasCard(card));
     }
+
+    @Test
+    public void testHandWithSingleCardCanBePrintedOut() {
+        ICard card = new Card(Rank.ACE, Suit.CLUBS);
+        hand.addCard(card);
+        assertEquals("[ACE of CLUBS]", hand.toString());
+    }
+
+    @Test
+    public void testHandWithMultipleCardsCanBePrintedOut() {
+        ICard firstCard = new Card(Rank.ACE, Suit.CLUBS);
+        ICard secondCard = new Card(Rank.KING, Suit.HEARTS);
+        hand.addCard(firstCard);
+        hand.addCard(secondCard);
+        assertEquals("[ACE of CLUBS, KING of HEARTS]", hand.toString());
+    }
 }
