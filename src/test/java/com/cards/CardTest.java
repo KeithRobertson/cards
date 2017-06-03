@@ -81,4 +81,31 @@ public class CardTest {
         ICard secondCard = new Card(Rank.ACE, Suit.SPADES);
         assertNotEquals(firstCard, secondCard);
     }
+
+    @Test
+    public void testCardsAreNotEqualWhenSecondIsNull() {
+        ICard firstCard = new Card(Rank.ACE, Suit.HEARTS);
+        assertNotEquals(firstCard, null);
+    }
+
+    @Test
+    public void testCardsAreNotEqualWhenClassesDiffer() {
+        ICard firstCard = new Card(Rank.ACE, Suit.DIAMONDS);
+        Object secondObject = "Ace of Diamonds";
+        assertNotEquals(firstCard, secondObject);
+    }
+
+    @Test
+    public void testEqualCardsHaveAnEqualHashcode() {
+        ICard firstCard = new Card(Rank.ACE, Suit.SPADES);
+        ICard secondCard = new Card(Rank.ACE, Suit.SPADES);
+        assertEquals(firstCard.hashCode(), secondCard.hashCode());
+    }
+
+    @Test
+    public void testDifferentCardsHaveADifferentHashcode() {
+        ICard firstCard = new Card(Rank.ACE, Suit.SPADES);
+        ICard secondCard = new Card(Rank.FIVE, Suit.HEARTS);
+        assertNotEquals(firstCard.hashCode(), secondCard.hashCode());
+    }
 }

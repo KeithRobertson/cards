@@ -5,15 +5,15 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class HandTest {
-    IHand hand;
+    private IHand hand;
 
     @Before
     public void setUp() {
@@ -143,7 +143,7 @@ public class HandTest {
     public void discardingCardAddsItToDeck() {
         IDeck deck = mock(IDeck.class);
         ICard card = mock(ICard.class);
-        List<ICard> cardList = Arrays.asList(card);
+        List<ICard> cardList = Collections.singletonList(card);
         hand.addCard(card);
         hand.discardCard(card, deck);
         verify(deck).addCardsToDiscardPile(cardList);
@@ -194,5 +194,12 @@ public class HandTest {
         hand.addCard(firstCard);
         hand.addCard(secondCard);
         assertEquals("[ACE of CLUBS, KING of HEARTS]", hand.toString());
+    }
+
+    @Test
+    public void testHandWithoutTargetCardReturnsNull() {
+        ICard card = new Card(Rank.ACE, Suit.SPADES);
+        hand.addCard(card);
+        assertNull(hand.getCard(Rank.EIGHT, Suit.DIAMONDS));
     }
 }
