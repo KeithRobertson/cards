@@ -25,6 +25,11 @@ public class StandardDeck implements IDeck {
     }
 
     @Override
+    public boolean isEmpty() {
+        return cards.size() == 0;
+    }
+
+    @Override
     public void shuffleDeck() {
         Collections.shuffle(cards);
     }

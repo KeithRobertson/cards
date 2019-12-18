@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface IDeck {
     int getSize();
+    boolean isEmpty();
     void shuffleDeck();
     void shuffleInDiscards();
     ICard deal();
